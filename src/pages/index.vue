@@ -2,12 +2,16 @@
 const router = useRouter();
 const page = ref(1)
 
-const { data } = await useAsyncData("quote", () => $fetch(`/api/quote/${page.value}`), {
-  watch: [page]
-});
+// const { data } = await useAsyncData("quote", () => $fetch(`/api/quote/${page.value}`), {
+//   watch: [page]
+// });
+// console.log('useAsyncData data', data)
+
 // const { data } = await useFetch(`/api/quote/${page.value}`, {
 //   watch: [page]
 // });
+// console.log('useFetch data', data)
+
 // const { data, refresh } = await useFetch(`/api/quote/${page.value}`);
 
 // watch(() => page, () => {
@@ -15,11 +19,14 @@ const { data } = await useAsyncData("quote", () => $fetch(`/api/quote/${page.val
 // }, {
 //   deep: true
 // })
-console.log('index data', data)
-const callAPI = async () => {
-  // const { data } = await useAsyncData("quote", () => useFetch("/api/quote/1"));
-  // refreshNuxtData("quote");
-};
+
+// const callAPI = async () => {
+//   // const { data } = await useAsyncData("quote", () => useFetch("/api/quote/1"));
+//   // refreshNuxtData("quote");
+// };
+
+const fetchData = await $fetch(`/api/quote/${page.value}`)
+console.log('fetchData', fetchData)
 
 const goToTestPage = () => {
   router.push("/test");
