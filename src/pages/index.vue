@@ -75,6 +75,10 @@ function next() {
       <p>{{ page }}</p>
       <button class="page-btn" @click="next">Next</button>
     </div>
+    <div>
+      <!-- Demo refresh ko dùng các data cũ -->
+      <!-- {{ data?.id }} -->
+    </div>
   </div>
 
 </template>
