@@ -2,31 +2,48 @@
 const router = useRouter();
 const page = ref(1)
 
-// const { data } = await useAsyncData("quote", () => $fetch(`/api/quote/${page.value}`), {
-//   watch: [page]
-// });
-// console.log('useAsyncData data', data)
+/*1. $fetch*/
+const fetchData = await $fetch(`/api/quote/${page.value}`)
+console.log('fetchData', fetchData.value)
 
+/*2.useFetch */
+// const {data: fetchData} = await useFetch(`/api/quote/${page.value}`, {key: 'quote'})
+// console.log('useFetch data', fetchData.value)
+// const nuxtData = useNuxtData('quote')
+// console.log('nuxtData', nuxtData)
+
+
+/* demo watch */
 // const { data } = await useFetch(`/api/quote/${page.value}`, {
+//   key: 'quote',
 //   watch: [page]
 // });
-// console.log('useFetch data', data)
+// console.log('useFetch data', data.value)
 
-// const { data, refresh } = await useFetch(`/api/quote/${page.value}`);
+// const { data } = await useAsyncData("quote", () => {
+//   //do anything
+//   return $fetch(`/api/quote/${page.value}`)
+// }, {
+//   watch: [page]
+// });
+// console.log('useAsyncData data', data.value)
 
-// watch(() => page, () => {
-//   refresh()
+/* Demo Refresh */
+// const { data, refresh } = await useFetch(`/api/quote/${page.value}`, {key: 'quote-refresh'});
+// watch(() => page, async () => {
+//   await refresh()
 // }, {
 //   deep: true
 // })
 
-// const callAPI = async () => {
-//   // const { data } = await useAsyncData("quote", () => useFetch("/api/quote/1"));
-//   // refreshNuxtData("quote");
-// };
+// const { data, refresh } = await useAsyncData('quote-refresh', () => $fetch(`/api/quote/${page.value}`));
+// watch(() => page, async () => {
+//   await refresh()
+// }, {
+//   deep: true
+// })
 
-const fetchData = await $fetch(`/api/quote/${page.value}`)
-console.log('fetchData', fetchData)
+
 
 const goToTestPage = () => {
   router.push("/test");

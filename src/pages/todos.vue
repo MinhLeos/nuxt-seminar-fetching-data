@@ -1,35 +1,33 @@
 <script setup>
-    const page = ref(1)
-    function prev() {
-        if (page.value > 1) {
-            page.value--;
-        }
-    }
-    function next() {
-        page.value++
-    }
+    // const page = ref(1)
+    // function prev() {
+    //     if (page.value > 1) {
+    //         page.value--;
+    //     }
+    // }
+    // function next() {
+    //     page.value++
+    // }
     async function getTodos() {
-        //await clearNuxtData('todos')
-        // await nextTick()
-        // const { data } = await useAsyncData('todos', () => $fetch('/api/todos'))
-        const { data: todos } = await useFetch('/api/todos', {
-            key: "todos",
-            transform: (todos) =>
-                todos.map((todo) => ({
-                    id: todo.id,
-                    titleFull: `${todo.title} - ${todo.completed}`,
-                })),
-        })
+        await nextTick()
+        const { data: todos } = await useAsyncData('todos', () => $fetch('/api/todos'))
+        // const { data: todos } = await useFetch('/api/todos', {
+        //     key: "todos",
+        //     transform: (todos) =>
+        //         todos.map((todo) => ({
+        //             id: todo.id,
+        //             titleFull: `${todo.title} - ${todo.completed}`,
+        //         })),
+        // })
         console.log('todos', todos.value)
     }
 
     onMounted(async () => {
         console.log('Mounted')
-        await nextTick()
         await getTodos()
     })
-
-    const nuxtApp = useNuxtApp()
+    
+    // const nuxtApp = useNuxtApp()
     // nuxtApp.hook("page:start", () => {
     //     console.log('page start')
     //     getTodos()
