@@ -1,4 +1,5 @@
 export default defineEventHandler(async (event) => {
+    console.log('call API todo')
     const config = useRuntimeConfig();
     const query = getQuery(event);
     const page = query.page ? +query.page : 1

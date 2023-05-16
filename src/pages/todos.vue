@@ -1,13 +1,13 @@
 <script setup>
     const page = ref(1)
-    function prev() {
-        if (page.value > 1) {
-            page.value--;
-        }
-    }
-    function next() {
-        page.value++
-    }
+    // function prev() {
+    //     if (page.value > 1) {
+    //         page.value--;
+    //     }
+    // }
+    // function next() {
+    //     page.value++
+    // }
     async function getTodos() {
         //await clearNuxtData('todos')
         // await nextTick()
@@ -21,6 +21,8 @@
                 })),
         })
         console.log('todos', todos.value)
+        const nuxtData = useNuxtData("todos")
+        console.log('nuxtData', nuxtData.data.value)
     }
 
     onMounted(async () => {
@@ -30,6 +32,8 @@
     })
 
     const nuxtApp = useNuxtApp()
+    // const nuxtData = useNuxtData("todos")
+    // console.log('nuxtData', nuxtData.data.value)
     // nuxtApp.hook("page:start", () => {
     //     console.log('page start')
     //     getTodos()
@@ -37,11 +41,13 @@
     // *** "page:finish" ***  >>> chạy ở tất cả các page
     // nuxtApp.hook("page:finish", async () => {
     //     console.log('page finish')
-    //     // getTodos()
-    //     const { data: dataPageFinish } = await useFetch('/api/todos', {
-    //         key: "todos"
-    //     })
+    //     getTodos()
+    //     // const { data: dataPageFinish } = await useFetch('/api/todos', {
+    //     //     key: "todos"
+    //     // })
     // })
+    const router = useRouter()
+    console.log('router', router)
 </script>
 
 <template>

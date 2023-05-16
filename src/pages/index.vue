@@ -2,15 +2,18 @@
 const router = useRouter();
 const page = ref(1)
 
-// const { data } = await useAsyncData("quote", () => $fetch(`/api/quote/${page.value}`), {
+// const { data } = await useAsyncData("quote123", () => $fetch(`/api/quote/${page.value}`), {
 //   watch: [page]
 // });
-// console.log('useAsyncData data', data)
+// console.log('useAsyncData data', data.value)
+//     const nuxtData = useNuxtData('quote123')
+//     console.log('nuxtData.data', nuxtData.data.value)
 
-// const { data } = await useFetch(`/api/quote/${page.value}`, {
-//   watch: [page]
-// });
-// console.log('useFetch data', data)
+const { data } = await useFetch(`/api/quote/${page.value}`, {
+  key: 'todos',
+  watch: [page]
+});
+console.log('useFetch data', data)
 
 // const { data, refresh } = await useFetch(`/api/quote/${page.value}`);
 
@@ -25,8 +28,8 @@ const page = ref(1)
 //   // refreshNuxtData("quote");
 // };
 
-const fetchData = await $fetch(`/api/quote/${page.value}`)
-console.log('fetchData', fetchData)
+// const fetchData = await $fetch(`/api/quote/${page.value}`)
+// console.log('fetchData', fetchData)
 
 const goToTestPage = () => {
   router.push("/test");
@@ -44,6 +47,9 @@ function next() {
   page.value++
 }
 
+const appConfig = useAppConfig()
+    console.log('In pages', appConfig.theme)
+    appConfig.theme.primaryColor = '#aaa'
 </script>
 
 <template>
@@ -58,8 +64,16 @@ function next() {
       <p>{{ page }}</p>
       <button class="page-btn" @click="next">Next</button>
     </div>
+    <div>
+      <Test />
+    </div>
+    <div>
+      <Cookie />
+    </div>
+    <div>
+      <HeadComposable />
+    </div>
   </div>
-
 </template>
 
 <style scoped>
