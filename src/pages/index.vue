@@ -8,10 +8,15 @@ console.log('fetchData', fetchData.value)
 
 /*2.useFetch */
 // const {data: fetchData} = await useFetch(`/api/quote/${page.value}`, {key: 'quote'})
+// const {data: fetchData, refresh} = await useFetch(`/api/quote/${page.value}`, {key: 'quote', immediate: false})
 // console.log('useFetch data', fetchData.value)
 // const nuxtData = useNuxtData('quote')
 // console.log('nuxtData', nuxtData)
 
+// onMounted(async () => {
+//   await refresh()
+//   console.log('useFetch data 2', fetchData.value)
+// })
 
 /* demo watch */
 // const { data } = await useFetch(`/api/quote/${page.value}`, {
