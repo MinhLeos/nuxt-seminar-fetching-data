@@ -1,7 +1,7 @@
 <script setup>
 
 /*2.useFetch vs useLazyFetch */
-const { data } = await useFetch("/api/quote/2", {key: 'quote2'});
+const { data } = await useFetch("/api/quote/2", {key: 'quote2', default: () => ({})});
 // const { data } = await useLazyFetch("/api/quote/2", {key: 'quote2'});
 // const { data } = await useFetch("/api/quote/2", {key: 'quote2', lazy: true});
 // const { data } = await useFetch("/api/quote/2", {key: 'quote2', pick: ['author']});

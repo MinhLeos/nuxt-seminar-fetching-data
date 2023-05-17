@@ -4,12 +4,14 @@ const page = ref(1)
 
 /*1. $fetch*/
 const fetchData = await $fetch(`/api/quote/${page.value}`)
-console.log('fetchData', fetchData.value)
+console.log('fetchData', fetchData)
+console.log('123', isRef(fetchData), isReactive(fetchData))
 
 /*2.useFetch */
-// const {data: fetchData} = await useFetch(`/api/quote/${page.value}`, {key: 'quote'})
+// const {data: fetchData} = await useFetch(`/api/quote/${page.value}`, {key: 'quote123'})
 // const {data: fetchData, refresh} = await useFetch(`/api/quote/${page.value}`, {key: 'quote', immediate: false})
 // console.log('useFetch data', fetchData.value)
+// console.log('123', isRef(fetchData), isReactive(fetchData))
 // const nuxtData = useNuxtData('quote')
 // console.log('nuxtData', nuxtData)
 
@@ -36,14 +38,14 @@ console.log('fetchData', fetchData.value)
 /* Demo Refresh */
 // const { data, refresh } = await useFetch(`/api/quote/${page.value}`, {key: 'quote-refresh'});
 // watch(() => page, async () => {
-//   await refresh()
+//   await refresh({dedupe: false})
 // }, {
 //   deep: true
 // })
 
 // const { data, refresh } = await useAsyncData('quote-refresh', () => $fetch(`/api/quote/${page.value}`));
 // watch(() => page, async () => {
-//   await refresh()
+//   await refresh({dedupe: false})
 // }, {
 //   deep: true
 // })
@@ -82,7 +84,7 @@ function next() {
     </div>
     <div>
       <!-- Demo refresh ko dùng các data cũ -->
-      <!-- {{ data?.id }} -->
+      {{ data?.id }}
     </div>
   </div>
 
