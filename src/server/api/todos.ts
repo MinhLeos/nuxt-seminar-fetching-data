@@ -1,5 +1,8 @@
 export default defineEventHandler(async (event) => {
     console.log('call API todo')
+    console.log('event', event)
+    const url = getRequestURL(event)
+    console.log('url', url)
     const config = useRuntimeConfig();
     const query = getQuery(event);
     const page = query.page ? +query.page : 1

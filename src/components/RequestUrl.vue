@@ -1,9 +1,17 @@
 
 <template>
-  <p>URL is: {{ url }}</p>
-  <p>Path is: {{ url.pathname }}</p>
+  <p>Request URL</p>
 </template>
 
 <script setup>
-const url = getRequestURL()
+  console.log('1')
+
+  const { data } = await useAsyncData('request-url', () => {
+    console.log('2')
+    const event = new Event()
+    const url = getRequestURL(event)
+    console.log('url', url)
+    return $fetch('/api/todos')
+  })
+console.log('3')
 </script>

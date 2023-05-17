@@ -29,6 +29,7 @@ import { useHydration } from 'nuxt/app';
     console.log('headers', headers)
     const cookie = useRequestHeaders(['cookie'])
     console.log('cookie', cookie)
+    
 </script>
 <template>
     <div>

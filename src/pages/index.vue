@@ -73,6 +73,9 @@ const appConfig = useAppConfig()
     <div>
       <HeadComposable />
     </div>
+    <div>
+      <NuxtLink to="/request"> Click to Request Page</NuxtLink>
+    </div>
   </div>
 </template>
 
