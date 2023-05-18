@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .draggable {
+        width: 100px;
+        height: 50px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        cursor: move;
+        margin-bottom: 10px;
+      }
+
+      .droppable {
+        width: 200px;
+        height: 200px;
+        border: 2px dashed #ccc;
+      }
+      #here {
+        position: absolute;
+        top: 50px;
+        right: 1050px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="draggableItem" class="draggable" draggable="true">Drag me</div>
+    <div id="droppableArea" class="droppable">Drop here</div>
+    <div id="here"></div>
+    <script>
+      const draggableItem = document.getElementById('draggableItem');
+      const droppableArea = document.getElementById('droppableArea');
+
+      draggableItem.addEventListener('dragstart', (event) => {
+        // Set the data being dragged (you can customize the data)
+        event.dataTransfer.setData('text/plain', 'Draggable Item');
+      });
+
+      droppableArea.addEventListener('dragover', (event) => {
+        // Prevent default to allow drop
+        event.preventDefault();
+      });
+
+      droppableArea.addEventListener('drop', (event) => {
+        // Prevent default to avoid opening the dragged content as a link
+        event.preventDefault();
+
+        // Get the dragged data
+        const data = event.dataTransfer.getData('text/plain');
+
+        // Create a new element to represent the dropped item
+        const newItem = document.createElement('div');
+        newItem.textContent = data;
+        newItem.className = 'draggable';
+
+        // Append the new item to the droppable area
+        document.getElementById('here').appendChild(newItem);
+      });
+    </script>
+  </body>
+</html>
