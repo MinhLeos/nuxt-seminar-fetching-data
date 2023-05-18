@@ -1,8 +1,8 @@
 <script setup>
 
 /*2.useFetch vs useLazyFetch */
-const { data } = await useFetch("/api/quote/2", {key: 'quote2', default: () => ({})});
-// const { data } = await useLazyFetch("/api/quote/2", {key: 'quote2'});
+// const { data } = await useFetch("/api/quote/2", {key: 'quote2', default: () => ({})});
+const { data } = await useLazyFetch("/api/quote/2", {key: 'quote2', server: false});
 // const { data } = await useFetch("/api/quote/2", {key: 'quote2', lazy: true});
 // const { data } = await useFetch("/api/quote/2", {key: 'quote2', pick: ['author']});
 // const { data } = await useFetch("/api/quote/2", {key: 'quote2', transform: (data) => {
@@ -23,14 +23,19 @@ watch(() => data, () => {
 //   default: () => ({}),
 //   // pick: ["author"],
 // });
+function back() {
+  const router = useRouter()
+  router.back()
+}
 
 </script>
 
 <template>
   <div class="mt-4 ml-4">
     <div>Test page</div>
-    <div><span>Author: </span>{{ data?.author || 'Author'}}</div>
+    <div><span>Author: </span>{{ data?.author}}</div>
   </div>
+  <button @click="back">Back</button>
 </template>
 
 <style scoped></style>

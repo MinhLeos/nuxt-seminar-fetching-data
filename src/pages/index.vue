@@ -3,9 +3,9 @@ const router = useRouter();
 const page = ref(1)
 
 /*1. $fetch*/
-const fetchData = await $fetch(`/api/quote/${page.value}`)
-console.log('fetchData', fetchData)
-console.log('123', isRef(fetchData), isReactive(fetchData))
+// const fetchData = await $fetch(`/api/quote/${page.value}`)
+// console.log('fetchData', fetchData)
+// console.log('123', isRef(fetchData), isReactive(fetchData))
 
 /*2.useFetch */
 // const {data: fetchData} = await useFetch(`/api/quote/${page.value}`, {key: 'quote123'})
@@ -21,7 +21,7 @@ console.log('123', isRef(fetchData), isReactive(fetchData))
 // })
 
 /* demo watch */
-// const { data } = await useFetch(`/api/quote/${page.value}`, {
+// const { data } = await useFetch(() => `/api/quote/${page.value}`, {
 //   key: 'quote',
 //   watch: [page]
 // });
@@ -43,12 +43,12 @@ console.log('123', isRef(fetchData), isReactive(fetchData))
 //   deep: true
 // })
 
-// const { data, refresh } = await useAsyncData('quote-refresh', () => $fetch(`/api/quote/${page.value}`));
-// watch(() => page, async () => {
-//   await refresh({dedupe: false})
-// }, {
-//   deep: true
-// })
+const { data, refresh } = await useAsyncData('quote-refresh', () => $fetch(`/api/quote/${page.value}`));
+watch(() => page, async () => {
+  await refresh()
+}, {
+  deep: true
+})
 
 
 
